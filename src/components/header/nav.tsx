@@ -1,19 +1,88 @@
 "use client";
 
+import { useState } from "react";
 import { FaAngleRight } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "../ui/accordion";
+import { Button } from "../ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+
 import { cn } from "@/lib/utils";
 
 export const Nav = () => {
-    return <Desktop />;
+    return <Mobile />;
 };
 
 const Mobile = () => {
-    return <nav className="lg"></nav>;
+    const [open, setOpen] = useState(false);
+
+    return (
+        <nav className="lg">
+            <Sheet>
+                <SheetTrigger asChild>
+                    <Button
+                        size={"sm"}
+                        onClick={() => setOpen(!open)}
+                        className="flex gap-x-2"
+                    >
+                        <span>Menu</span>
+                    </Button>
+                </SheetTrigger>
+                <SheetContent className="h-full min-h-screen w-screen min-w-full">
+                    <div className="flex w-full items-start justify-center gap-y-4 p-6">
+                        <Accordion
+                            type="single"
+                            collapsible
+                            className="flex w-full flex-col gap-y-2"
+                        >
+                            {data.map((item, index) => (
+                                <>
+                                    {item.dropdown ? (
+                                        <AccordionItem
+                                            value={item.label}
+                                            className="border-0"
+                                        >
+                                            <AccordionTrigger className="text-2xl font-semibold hover:no-underline [&[data-state=open]]:text-muted-foreground">
+                                                {item.label}
+                                            </AccordionTrigger>
+                                            <AccordionContent className="ml-8 flex flex-col gap-y-2 text-2xl font-semibold">
+                                                {item.subItems?.map(
+                                                    (subItem, index) => (
+                                                        <Link
+                                                            href={subItem.href}
+                                                            key={index}
+                                                        >
+                                                            {subItem.label}
+                                                        </Link>
+                                                    ),
+                                                )}
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    ) : (
+                                        <Link
+                                            href={item.href}
+                                            className="text-2xl font-semibold"
+                                        >
+                                            {item.label}
+                                        </Link>
+                                    )}
+                                </>
+                            ))}
+                        </Accordion>
+                    </div>
+                </SheetContent>
+            </Sheet>
+        </nav>
+    );
 };
 
 const Desktop = () => {
