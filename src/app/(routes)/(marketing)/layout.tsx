@@ -1,5 +1,6 @@
 import { Header } from "@/components/header";
-import { TopNotificationBar } from "@/components/top-notification-bar";
+
+import { TopNotificationBar } from "./(home)/_components/top-notification-bar";
 
 export default function MarketingLayout({
     children,
@@ -7,10 +8,10 @@ export default function MarketingLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div>
+        <>
             <TopNotificationBar />
             <Header />
             <main>{children}</main>
-        </div>
+        </>
     );
 }

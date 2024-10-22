@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -20,5 +22,33 @@ export const Wrapper = ({
         >
             {children}
         </section>
+    );
+};
+
+export const SectionText = ({ className, children }: Props) => {
+    return (
+        <p
+            className={cn(
+                "text-lg font-medium leading-6 text-accent-foreground",
+                className,
+            )}
+        >
+            {children}
+        </p>
+    );
+};
+
+export const SectionLink = ({
+    href = "/",
+    className,
+    children,
+}: Props & { href: string }) => {
+    return (
+        <Link
+            href={href}
+            className="text-brand-violet-500 text-lg font-bold hover:underline"
+        >
+            {children}
+        </Link>
     );
 };
