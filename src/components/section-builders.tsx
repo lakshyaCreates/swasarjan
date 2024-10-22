@@ -7,6 +7,23 @@ interface Props {
     children: React.ReactNode;
 }
 
+export const SectionWrapper = ({
+    heading,
+    description,
+}: {
+    heading: string;
+    description: string;
+}) => {
+    return (
+        <Wrapper>
+            <div className="space-y-4">
+                <SectionHeading>{heading}</SectionHeading>
+                <SectionText>{description}</SectionText>
+            </div>
+        </Wrapper>
+    );
+};
+
 export const Wrapper = ({
     id,
     className,
@@ -25,11 +42,24 @@ export const Wrapper = ({
     );
 };
 
+export const SectionHeading = ({ className, children }: Props) => {
+    return (
+        <h3
+            className={cn(
+                "text-3xl font-bold text-brand-orange-500 lg:text-4xl",
+                className,
+            )}
+        >
+            {children}
+        </h3>
+    );
+};
+
 export const SectionText = ({ className, children }: Props) => {
     return (
         <p
             className={cn(
-                "text-lg font-medium leading-6 text-accent-foreground",
+                "text-lg font-medium leading-6 text-accent-foreground lg:text-xl",
                 className,
             )}
         >
@@ -46,7 +76,7 @@ export const SectionLink = ({
     return (
         <Link
             href={href}
-            className="text-brand-violet-500 text-lg font-bold hover:underline"
+            className="text-lg font-bold text-brand-violet-500 hover:underline"
         >
             {children}
         </Link>
