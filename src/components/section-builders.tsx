@@ -59,7 +59,7 @@ export const SectionText = ({ className, children }: Props) => {
     return (
         <p
             className={cn(
-                "text-lg font-medium leading-6 text-accent-foreground lg:text-xl",
+                "text-lg font-medium leading-tight text-accent-foreground lg:text-xl",
                 className,
             )}
         >

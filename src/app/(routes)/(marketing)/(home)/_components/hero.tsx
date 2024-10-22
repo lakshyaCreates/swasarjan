@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
     return (
-        <>
+        <div>
             <Wrapper>
                 <div className="w-full space-y-10 py-16 text-center">
                     <div className="place-items-center space-y-4">
@@ -45,7 +45,7 @@ export const Hero = () => {
                     </div>
                 </div>
             </Wrapper>
-            <div className="relative md:py-8">
+            <div className="relative md:py-10">
                 <Image
                     alt="Vector"
                     src={"/hero-graphic-vector.svg"}
@@ -65,7 +65,7 @@ export const Hero = () => {
                     />
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
