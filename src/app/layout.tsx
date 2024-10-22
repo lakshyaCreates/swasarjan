@@ -28,7 +28,7 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    "font-darkerGrotesque relative overflow-x-hidden antialiased",
+                    "relative overflow-x-hidden font-darkerGrotesque antialiased selection:bg-brand-orange-500/20",
                     darkerGrotesque.variable,
                 )}
             >
