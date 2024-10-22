@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Darker_Grotesque } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
 import { Providers } from "@/providers";
 
-const inter = Inter({
+const darkerGrotesque = Darker_Grotesque({
     display: "swap",
     subsets: ["latin"],
+    variable: "--font-darkerGrotesque",
+    weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 // TODO: Setup SEO
@@ -24,7 +26,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={cn("relative antialiased", inter.className)}>
+            <body
+                className={cn(
+                    "font-darkerGrotesque relative overflow-x-hidden antialiased",
+                    darkerGrotesque.variable,
+                )}
+            >
                 <Providers>{children}</Providers>
             </body>
         </html>

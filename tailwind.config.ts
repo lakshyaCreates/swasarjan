@@ -9,6 +9,9 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                darkerGrotesque: ["var(--font-darkerGrotesque)"],
+            },
             colors: {
                 brand: {
                     orange: {
