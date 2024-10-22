@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaAngleRight } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -15,22 +15,45 @@ import {
 } from "../ui/accordion";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { useIsMounted } from "usehooks-ts";
 
 import { cn } from "@/lib/utils";
 
+import { CTA } from "./cta";
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const Nav = () => {
-    return <Mobile />;
+    return (
+        <div className="flex items-center gap-x-2">
+            <Desktop />
+            <div className="block pr-2 lg:hidden">
+                <CTA />
+            </div>
+            <Mobile />
+        </div>
+    );
 };
 
 const Mobile = () => {
     const [open, setOpen] = useState(false);
 
+    const pathname = usePathname();
+
+    const getRootPath = (path: string) => {
+        const parts = path.split("/");
+        return parts.length > 1 ? `/${parts[1]}` : path;
+    };
+
+    const path = getRootPath(pathname);
+
     return (
-        <nav className="lg">
+        <nav className="block lg:hidden">
             <Sheet>
                 <SheetTrigger asChild>
                     <Button
                         size={"sm"}
+                        variant={"secondary"}
                         onClick={() => setOpen(!open)}
                         className="flex gap-x-2"
                     >
@@ -51,7 +74,13 @@ const Mobile = () => {
                                             value={item.label}
                                             className="border-0"
                                         >
-                                            <AccordionTrigger className="text-2xl font-semibold hover:no-underline [&[data-state=open]]:text-muted-foreground">
+                                            <AccordionTrigger
+                                                className={cn(
+                                                    "text-2xl font-semibold hover:no-underline [&[data-state=open]]:text-muted-foreground",
+                                                    path === item.href &&
+                                                        "font-bold text-brand-orange-500 [&[data-state=open]]:text-brand-orange-300",
+                                                )}
+                                            >
                                                 {item.label}
                                             </AccordionTrigger>
                                             <AccordionContent className="ml-8 flex flex-col gap-y-2 text-2xl font-semibold">
@@ -70,7 +99,11 @@ const Mobile = () => {
                                     ) : (
                                         <Link
                                             href={item.href}
-                                            className="text-2xl font-semibold"
+                                            className={cn(
+                                                "text-2xl font-semibold",
+                                                path === item.href &&
+                                                    "font-bold text-brand-orange-500",
+                                            )}
                                         >
                                             {item.label}
                                         </Link>
@@ -88,6 +121,15 @@ const Mobile = () => {
 const Desktop = () => {
     const pathname = usePathname();
 
+    const [ok, setOk] = useState(false);
+    const isMounted = useIsMounted();
+
+    useEffect(() => {
+        void delay(1000).then(() => {
+            if (isMounted()) setOk(true);
+        });
+    }, [isMounted]);
+
     const getRootPath = (path: string) => {
         const parts = path.split("/");
         return parts.length > 1 ? `/${parts[1]}` : path;
@@ -96,18 +138,19 @@ const Desktop = () => {
     const path = getRootPath(pathname);
 
     return (
-        <div className="flex items-center justify-center gap-x-4">
+        <div className="hidden items-center justify-center gap-x-4 lg:flex">
             {data.map((item, index) => (
-                <Link
+                <div
                     key={index}
-                    href={item.href}
                     className={cn(
                         "group relative flex items-center text-lg font-semibold",
                         path === item.href && "font-bold text-brand-orange-500",
                     )}
                 >
-                    <span>{item.label}</span>
-                    {item.dropdown && item.subItems && (
+                    <Link href={item.href}>
+                        <span>{item.label}</span>
+                    </Link>
+                    {item.subItems && (
                         <>
                             <IoIosArrowDown className="group ml-1 mt-1.5 size-3 transition-transform duration-150 ease-in group-hover:rotate-180" />
                             <div className="invisible absolute -left-1/2 top-8 z-50 flex h-fit min-w-52 max-w-52 flex-col rounded-xl border bg-background p-2 opacity-0 shadow-sm transition-all duration-150 ease-in group-hover:visible group-hover:opacity-100">
@@ -126,7 +169,7 @@ const Desktop = () => {
                             </div>
                         </>
                     )}
-                </Link>
+                </div>
             ))}
         </div>
     );
