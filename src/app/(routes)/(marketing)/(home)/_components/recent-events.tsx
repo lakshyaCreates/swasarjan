@@ -1,6 +1,9 @@
 import { ItemCard } from "@/components/item-card";
 import { SectionWrapper } from "@/components/section-builders";
+<<<<<<< HEAD
 import { Button } from "@/components/ui/button";
+=======
+>>>>>>> d32fb54bcfe1da14248896bf89f7ca7d22a7d75d
 
 export const RecentEvents = () => {
     return (
@@ -14,11 +17,14 @@ export const RecentEvents = () => {
                     <ItemCard key={index} {...item} />
                 ))}
             </div>
+<<<<<<< HEAD
             <div className="flex w-full justify-center pt-12">
                 <Button variant={"secondary"} size={"lg"}>
                     View More Events
                 </Button>
             </div>
+=======
+>>>>>>> d32fb54bcfe1da14248896bf89f7ca7d22a7d75d
         </SectionWrapper>
     );
 };
