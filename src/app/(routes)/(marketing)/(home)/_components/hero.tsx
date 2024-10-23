@@ -10,7 +10,7 @@ export const Hero = () => {
     return (
         <div>
             <Wrapper>
-                <div className="w-full space-y-10 py-16 text-center">
+                <div className="-mt-6 w-full space-y-10 pb-16 text-center">
                     <div className="place-items-center space-y-4">
                         <h1 className="space-x-2 text-4xl font-extrabold lg:text-5xl">
                             <span>Share your</span>

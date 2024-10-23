@@ -63,14 +63,16 @@ const Mobile = () => {
                 <SheetContent className="h-full min-h-screen w-screen min-w-full">
                     <div className="flex w-full items-start justify-center gap-y-4 p-6">
                         <Accordion
+                            key={"mobile-accordion"}
                             type="single"
                             collapsible
                             className="flex w-full flex-col gap-y-2"
                         >
                             {data.map((item, index) => (
-                                <>
+                                <span key={index}>
                                     {item.dropdown ? (
                                         <AccordionItem
+                                            key={index}
                                             value={item.label}
                                             className="border-0"
                                         >
@@ -98,6 +100,7 @@ const Mobile = () => {
                                         </AccordionItem>
                                     ) : (
                                         <Link
+                                            key={index}
                                             href={item.href}
                                             className={cn(
                                                 "text-2xl font-semibold",
@@ -108,7 +111,7 @@ const Mobile = () => {
                                             {item.label}
                                         </Link>
                                     )}
-                                </>
+                                </span>
                             ))}
                         </Accordion>
                     </div>

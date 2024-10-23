@@ -8,19 +8,27 @@ interface Props {
 }
 
 export const SectionWrapper = ({
+    className,
+    children,
     heading,
     description,
-}: {
+    wrapChildren,
+}: Props & {
+    wrapChildren?: boolean;
     heading: string;
     description: string;
 }) => {
     return (
-        <Wrapper>
-            <div className="space-y-4">
-                <SectionHeading>{heading}</SectionHeading>
-                <SectionText>{description}</SectionText>
-            </div>
-        </Wrapper>
+        <div className={cn("space-y-8", className)}>
+            <Wrapper>
+                <div className="flex flex-col items-center justify-center gap-y-2 text-center">
+                    <SectionHeading>{heading}</SectionHeading>
+                    <SectionText>{description}</SectionText>
+                    <div>{wrapChildren && children}</div>
+                </div>
+            </Wrapper>
+            <div>{!wrapChildren && children}</div>
+        </div>
     );
 };
 
