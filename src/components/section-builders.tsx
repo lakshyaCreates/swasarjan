@@ -24,7 +24,9 @@ export const SectionWrapper = ({
                 <div className="flex flex-col items-center justify-center gap-y-2 text-center">
                     <SectionHeading>{heading}</SectionHeading>
                     <SectionText>{description}</SectionText>
-                    <div>{wrapChildren && children}</div>
+                    <div className={cn(wrapChildren && "pt-6")}>
+                        {wrapChildren && children}
+                    </div>
                 </div>
             </Wrapper>
             <div>{!wrapChildren && children}</div>

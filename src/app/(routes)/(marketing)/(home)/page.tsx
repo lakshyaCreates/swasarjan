@@ -1,6 +1,7 @@
 import { CSRPartners } from "./_components/csr-partners";
 import { Hero } from "./_components/hero";
 import { Philosophy } from "./_components/philosophy";
+import { RecentEvents } from "./_components/recent-events";
 import { TopNotificationBar } from "./_components/top-notification-bar";
 
 export default function HomePage() {
@@ -9,6 +10,7 @@ export default function HomePage() {
             <Hero />
             <Philosophy />
             <CSRPartners />
+            <RecentEvents />
         </div>
     );
 }
