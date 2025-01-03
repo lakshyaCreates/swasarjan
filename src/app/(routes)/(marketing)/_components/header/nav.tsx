@@ -28,7 +28,7 @@ export const Nav = () => {
     return (
         <div className="flex items-center gap-x-2">
             <Desktop />
-            <div className="block pr-2 lg:hidden">
+            <div className="block pr-2 xl:hidden">
                 <CTA />
             </div>
             <Mobile />
@@ -49,7 +49,7 @@ const Mobile = () => {
     const path = getRootPath(pathname);
 
     return (
-        <nav className="block lg:hidden">
+        <nav className="block xl:hidden">
             <Sheet>
                 <SheetTrigger asChild>
                     <Button
@@ -142,7 +142,7 @@ const Desktop = () => {
     const path = getRootPath(pathname);
 
     return (
-        <div className="hidden items-center justify-center gap-x-4 lg:flex">
+        <div className="hidden items-center justify-center gap-x-4 xl:flex">
             {data.map((item, index) => (
                 <div
                     key={index}
@@ -150,15 +150,26 @@ const Desktop = () => {
                         "group relative flex items-center text-lg font-semibold",
                     )}
                 >
-                    <Link
-                        href={item.href}
-                        className={cn(
-                            path === item.href &&
-                                "font-bold text-brand-orange-500",
-                        )}
-                    >
-                        <span>{item.label}</span>
-                    </Link>
+                    {item.href === "" && item.dropdown ? (
+                        <p
+                            className={cn(
+                                path === item.href &&
+                                    "cursor-pointer font-bold text-brand-orange-500",
+                            )}
+                        >
+                            {item.label}
+                        </p>
+                    ) : (
+                        <Link
+                            href={item.href}
+                            className={cn(
+                                path === item.href &&
+                                    "font-bold text-brand-orange-500",
+                            )}
+                        >
+                            <span>{item.label}</span>
+                        </Link>
+                    )}
                     {item.subItems && (
                         <>
                             <IoIosArrowDown
@@ -206,68 +217,114 @@ const data: DataProps[] = [
         href: "/",
     },
     {
-        label: "About",
-        href: "/about",
+        label: "Who We Are?",
+        href: "",
         dropdown: true,
         subItems: [
             {
                 label: "Our Story",
-                href: "/about/our-story",
+                href: "/our-story",
             },
             {
-                label: "Our Founder",
-                href: "/about/our-founder",
+                label: "Our Partners",
+                href: "/our-partners",
             },
             {
-                label: "Our Team",
-                href: "/about/our-team",
+                label: "Financials",
+                href: "/financials",
             },
         ],
     },
     {
-        label: "Events",
-        href: "/events",
-    },
-    {
-        label: "Media",
-        href: "/media",
+        label: "What We Do?",
+        href: "",
         dropdown: true,
         subItems: [
             {
-                label: "Newsroom",
-                href: "/media/newsroom",
+                label: "Education",
+                href: "/what-we-do/education",
             },
             {
-                label: "Gallery",
-                href: "/media/gallery",
+                label: "Healthcare",
+                href: "/what-we-do/healthcare",
             },
             {
-                label: "Reports",
-                href: "/media/reports",
+                label: "Environment",
+                href: "/what-we-do/environment",
             },
             {
-                label: "Resources",
-                href: "/media/resources",
+                label: "Blood Donation",
+                href: "/what-we-do/blood-donation",
+            },
+            {
+                label: "Livelihood",
+                href: "/what-we-do/livelihood",
+            },
+            {
+                label: "Awareness Programs",
+                href: "/what-we-do/awareness-programs",
             },
         ],
     },
     {
-        label: "Legal",
-        href: "/legal",
+        label: "Our Impact",
+        href: "",
         dropdown: true,
         subItems: [
             {
-                label: "Terms & Conditions",
-                href: "/legal/terms-and-conditions",
+                label: "Success Stories",
+                href: "/success-stories",
             },
             {
-                label: "Privacy Policy",
-                href: "/legal/privacy-policy",
+                label: "Blogs",
+                href: "/blogs",
             },
         ],
     },
     {
-        label: "Contact Us",
-        href: "#contact-us",
+        label: "Resources",
+        href: "",
+        dropdown: true,
+        subItems: [
+            {
+                label: "Compliance",
+                href: "/resources/compliance",
+            },
+            {
+                label: "Annual Reports",
+                href: "/resources/annual-reports",
+            },
+            {
+                label: "Media",
+                href: "/resources/media",
+            },
+            {
+                label: "Publications",
+                href: "/resources/publications",
+            },
+        ],
+    },
+    {
+        label: "Get Involved",
+        href: "",
+        dropdown: true,
+        subItems: [
+            {
+                label: "Volunteer",
+                href: "/get-involved/volunteer",
+            },
+            {
+                label: "Intern",
+                href: "/get-involved/intern",
+            },
+            {
+                label: "Work with us",
+                href: "/get-involved/work-with-us",
+            },
+            {
+                label: "Contact Us",
+                href: "/get-involved/contact-us",
+            },
+        ],
     },
 ];

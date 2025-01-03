@@ -10,7 +10,7 @@ export const Header = () => {
             <header className="flex h-fit items-center justify-between pb-4 pt-6">
                 <Logo contextActive />
                 <Nav />
-                <div className="hidden lg:block">
+                <div className="hidden xl:block">
                     <CTA />
                 </div>
             </header>
