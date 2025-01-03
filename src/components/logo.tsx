@@ -1,4 +1,4 @@
-    "use client";
+"use client";
 
 import { FaAngleRight } from "react-icons/fa6";
 import { IoDocumentsOutline } from "react-icons/io5";
@@ -48,7 +48,7 @@ export const Logo = ({ contextActive }: { contextActive?: boolean }) => {
                         <Image
                             width={500}
                             height={500}
-                            src={"./swasarjan-main_logo.svg"}
+                            src={`${process.env.NEXT_PUBLIC_BASE_URL}/swasarjan-main_logo.svg`}
                             alt="Swa Sarjan Logo"
                             className="min-w-44 max-w-44 select-none"
                             draggable={false}
@@ -140,12 +140,12 @@ const data: DataProps[] = [
             {
                 text: "Terms and Conditions",
                 icon: IoDocumentsOutline,
-                href: "/terms-and-conditions",
+                href: "/legal/terms-and-conditions",
             },
             {
                 text: "Privacy Policy",
                 icon: SiGnuprivacyguard,
-                href: "/privacy-policy",
+                href: "/legal/privacy-policy",
             },
         ],
     },

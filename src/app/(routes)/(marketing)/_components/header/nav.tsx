@@ -7,6 +7,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { useIsMounted } from "usehooks-ts";
+
+import { cn } from "@/lib/utils";
+
 import {
     Accordion,
     AccordionContent,
@@ -15,9 +19,6 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useIsMounted } from "usehooks-ts";
-
-import { cn } from "@/lib/utils";
 
 import { CTA } from "./cta";
 
@@ -147,21 +148,32 @@ const Desktop = () => {
                     key={index}
                     className={cn(
                         "group relative flex items-center text-lg font-semibold",
-                        path === item.href && "font-bold text-brand-orange-500",
                     )}
                 >
-                    <Link href={item.href}>
+                    <Link
+                        href={item.href}
+                        className={cn(
+                            path === item.href &&
+                                "font-bold text-brand-orange-500",
+                        )}
+                    >
                         <span>{item.label}</span>
                     </Link>
                     {item.subItems && (
                         <>
-                            <IoIosArrowDown className="group ml-1 mt-1.5 size-3 transition-transform duration-150 ease-in group-hover:rotate-180" />
+                            <IoIosArrowDown
+                                className={cn(
+                                    "group ml-1 mt-1.5 size-3 transition-transform duration-150 ease-in group-hover:rotate-180",
+                                    path === item.href &&
+                                        "font-bold text-brand-orange-500",
+                                )}
+                            />
                             <div className="invisible absolute -left-1/2 top-8 z-50 flex h-fit min-w-52 max-w-52 flex-col rounded-xl border bg-background p-2 opacity-0 shadow-sm transition-all duration-150 ease-in group-hover:visible group-hover:opacity-100">
                                 {item.subItems.map((subItem, index) => (
                                     <Link
                                         key={index}
                                         href={subItem.href}
-                                        className="group/subLink flex cursor-grab items-center gap-x-1 rounded-xl bg-transparent px-3 py-2 hover:bg-brand-orange-50/50"
+                                        className="group/subLink flex items-center gap-x-1 rounded-xl bg-transparent px-3 py-2 hover:bg-brand-orange-50/50"
                                     >
                                         <span>{subItem.label}</span>
                                         <span>
@@ -217,10 +229,6 @@ const data: DataProps[] = [
         href: "/events",
     },
     {
-        label: "Projects",
-        href: "/projects",
-    },
-    {
         label: "Media",
         href: "/media",
         dropdown: true,
@@ -240,6 +248,21 @@ const data: DataProps[] = [
             {
                 label: "Resources",
                 href: "/media/resources",
+            },
+        ],
+    },
+    {
+        label: "Legal",
+        href: "/legal",
+        dropdown: true,
+        subItems: [
+            {
+                label: "Terms & Conditions",
+                href: "/legal/terms-and-conditions",
+            },
+            {
+                label: "Privacy Policy",
+                href: "/legal/privacy-policy",
             },
         ],
     },
