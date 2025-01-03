@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { usePathname } from "next/navigation";
 
+import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 import {
@@ -18,6 +19,8 @@ export const TopNotificationBar = () => {
     const pathname = usePathname();
 
     const [isVisible, setIsVisible] = useState(true);
+
+    const { notification } = site.homePage;
 
     useEffect(() => {
         allowedPages.map((page) => {
@@ -36,12 +39,7 @@ export const TopNotificationBar = () => {
                 )}
             >
                 <SectionText className="mx-4 space-x-1">
-                    <span>
-                        Your each click, contribution and share is helping a
-                        child in need!
-                    </span>
-                    <SectionLink href="/events">Learn more</SectionLink>
-                    <span>about our recent campaigns</span>
+                    {notification.props.children}
                 </SectionText>
                 <Button
                     size={"icon"}
