@@ -1,6 +1,5 @@
 import { CSRPartners } from "./_components/csr-partners";
 import { CTABanner } from "./_components/cta-banner";
-import { Footer } from "./_components/footer";
 import { Hero } from "./_components/hero";
 import { HomeContact } from "./_components/home-contact";
 import { Philosophy } from "./_components/philosophy";
@@ -19,7 +18,6 @@ export default function HomePage() {
             <RecentProjects />
             <Testimonials />
             <HomeContact />
-            <Footer />
         </div>
     );
 }

@@ -1,5 +1,5 @@
+import { Footer } from "./_components/footer";
 import { Header } from "./_components/header";
-
 import { TopNotificationBar } from "./_components/top-notification-bar";
 
 export default function MarketingLayout({
@@ -12,6 +12,7 @@ export default function MarketingLayout({
             <TopNotificationBar />
             <Header />
             <main>{children}</main>
+            <Footer />
         </>
     );
 }
